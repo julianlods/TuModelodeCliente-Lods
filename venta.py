@@ -6,6 +6,7 @@ class Venta:
         self.articulo = articulo
         self.cantidad = cantidad
 
+    #Guardo la venta en un archivo. Usé chatgpt mayormente para generar el encabezado y las líneas
     def guardar_venta(self, archivo="ventas.csv"):
         datos = {
             "cliente_id": self.cliente.obtener_datos()['id_cliente'],
@@ -21,6 +22,6 @@ class Venta:
         }
         with open(archivo, mode="a", newline="") as f:
             escritor = csv.DictWriter(f, fieldnames=datos.keys())
-            if f.tell() == 0:  # Si el archivo está vacío, escribir el encabezado
+            if f.tell() == 0:  #Genera el encabezado si el archivo está vacío
                 escritor.writeheader()
             escritor.writerow(datos)
